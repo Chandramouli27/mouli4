@@ -1,0 +1,292 @@
+#include <iostream>
+#include <cstdlib>
+#include<ctime>
+#include<string>
+#pragma GCC diagnostic ignored "-Wnarrowing"
+using namespace std;
+class hangman
+{
+	public:
+	string question[4]={"Operating system","celebrity of mca"," best coder of mca(placed)","jersey no-7"};
+	string answer[4]={"microsoft","james","shivasurya","dhoni"};
+	 int stage=1;
+     int num;
+     int temp=0,wordcount=0;
+     string word;
+	 string word1="__________";
+     char ch;
+     char symbol=92;
+public:
+void setquestion()
+{
+	srand(time(0));
+    num=(rand()%4)+1;
+	word=answer[num];	  
+}
+void checkword()
+{
+	for(int i=0;i<word.length();i++)
+	{
+	 if(ch==word[i])
+	{
+		word[i]='*';
+		word1[i]=ch;
+		wordcount++;
+		if(word.length()==wordcount)
+		{
+			cout<<"YOUR THE GAME"<<endl;
+			exit(0);
+		}
+		temp=1;
+		break;
+	}	
+	}
+	
+	if(temp==0)
+	{
+		if(stage==1)
+		{
+			stage=1;
+		}
+		stage++;
+		if(stage==7)
+		{
+			system("cls");
+			hangmandesign7();
+		 cout<<"----------YOUR GAME OVER-----------";
+		 exit(0);
+		 }
+		 	}
+}
+void hangmandesign1()
+{
+	cout<<"\t"<<"----HANGMAN----"<<endl;
+	for(int i=0;i<10;i++)
+	{
+		for(int j=0;j<10;j++)
+		{
+			if(j==0)
+			{
+				cout<<"|";
+			}
+		}
+		cout<<endl;
+	}
+}
+void hangmandesign2()
+{
+	cout<<"\t"<<"----HANGMAN----"<<endl;
+	for(int i=0;i<10;i++)
+	{
+		for(int j=0;j<10;j++)
+		{
+			if(i==1&&j>0)
+			 {
+			 	cout<<"-";
+			 }
+			else if(j==0)
+			{
+				cout<<"|";
+			}
+		}
+		cout<<endl;
+	}
+}	
+void hangmandesign3()
+{
+	cout<<"\t"<<"----HANGMAN----"<<endl;
+	for(int i=0;i<10;i++)
+	{
+		for(int j=0;j<10;j++)
+		{
+			if(i==1&&j>0)
+			 {
+			 	cout<<"-";
+			 }
+			else if(j==0||i==2&&j==7||i==3&&j==7)
+			{
+				cout<<"|";
+			}
+			else 
+			{
+				cout<<" ";
+			}
+		}
+		cout<<endl;
+	}
+}
+void hangmandesign4()
+{
+	cout<<"\t"<<"----HANGMAN----"<<endl;
+	for(int i=0;i<10;i++)
+	{
+		for(int j=0;j<10;j++)
+		{   
+		     if(i==4&&j==7)
+		     {
+		     	cout<<"O";
+			 }
+			else if(i==1&&j>0)
+			 {
+			 	cout<<"-";
+			 }
+			else if(j==0||i==2&&j==7||i==3&&j==7)
+			{
+				cout<<"|";
+			}
+			else 
+			{
+				cout<<" ";
+			}
+		}
+		cout<<endl;
+	}
+}
+void hangmandesign5()
+{
+	cout<<"\t"<<"----HANGMAN----"<<endl;
+	for(int i=0;i<10;i++)
+	{
+		for(int j=0;j<10;j++)
+		{   
+		     if(i==4&&j==7)
+		     {
+		     	cout<<"O";
+			 }
+			else if(i==1&&j>0)
+			 {
+			 	cout<<"-";
+			 }
+			else if(j==0||i==2&&j==7||i==3&&j==7||i==5&&j==7)
+			{
+				cout<<"|";
+			}
+			else 
+			{
+				cout<<" ";
+			}
+		}
+		cout<<endl;
+	}
+}
+void hangmandesign6()
+{
+	cout<<"\t"<<"----HANGMAN----"<<endl;
+	for(int i=0;i<10;i++)
+	{
+		for(int j=0;j<10;j++)
+		{   
+		     if(i==5&&j==6)
+		     {
+		     	cout<<"/";
+			 }
+			 else if(i==5&&j==8)
+			 {
+			 	cout<<symbol;
+			 }
+		     else if(i==4&&j==7)
+		     {
+		     	cout<<"O";
+			 }
+			else if(i==1&&j>0)
+			 {
+			 	cout<<"-";
+			 }
+			else if(j==0||i==2&&j==7||i==3&&j==7||i==5&&j==7)
+			{
+				cout<<"|";
+			}
+			else 
+			{
+				cout<<" ";
+			}
+		}
+		cout<<endl;
+	}
+}
+void hangmandesign7()
+{
+	cout<<"\t"<<"----HANGMAN----"<<endl;
+	for(int i=0;i<10;i++)
+	{
+		for(int j=0;j<10;j++)
+		{   
+		     if(i==5&&j==6||i==6&&j==6)
+		     {
+		     	cout<<"/";
+			 }
+			 else if(i==5&&j==8||i==6&&j==8)
+			 {
+			 	cout<<symbol;
+			 }
+		     else if(i==4&&j==7)
+		     {
+		     	cout<<"O";
+			 }
+			else if(i==1&&j>0)
+			 {
+			 	cout<<"-";
+			 }
+			else if(j==0||i==2&&j==7||i==3&&j==7||i==5&&j==7)
+			{
+				cout<<"|";
+			}
+			else 
+			{
+				cout<<" ";
+			}
+		}
+		cout<<endl;
+	}
+}
+};
+int main() {
+	hangman h;
+	h.setquestion();
+	while(true)
+	{
+		h.temp=0;
+	//SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),{0,0});
+	system("cls");
+	 switch(h.stage)
+	 {
+	 	case 1:
+	 	    h.hangmandesign1();
+	 		break;
+	 	case 2:
+	 		h.hangmandesign2();
+	 		break;
+	 	case 3:
+	 		h.hangmandesign3();
+	 		break;
+	 	case 4:
+	 		h.hangmandesign4();
+	 		break;
+	 	case 5:
+	 		h.hangmandesign5();
+	 		break;
+	 	case 6:
+	 		h.hangmandesign6();
+	 		break;
+	 	case 7:
+	 		h.hangmandesign7();
+	 		break;
+		 }
+		cout<<h.question[h.num]<<endl;
+		for(int i=0;i<h.word.length();i++)
+		 {
+		 	if(h.word1[i]=='_')
+		 	{
+		 		cout<<"_";
+		    } 
+			 else{
+		 	cout<<h.word1[i]<<" ";
+		    }
+		 }
+		 cout<<endl;
+		 cout<<"Give Input Only a to z"<<endl;
+		 cin>>h.ch;
+		 h.checkword();	
+	}
+	return 0;
+}
